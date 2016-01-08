@@ -1,6 +1,4 @@
-package com.tester.learn.structure.CH0601;
-
-import java.io.*;
+package com.tester.learn.structure.CH06;
 
 /**
  * Created by U0138272 on 1/1/2016.

@@ -10,10 +10,10 @@ public class DiamondTest {
 
     public static void main(String[] args)
     {
-        List<String> books = new ArrayList<>();
-        books.add("crazy books");
-        books.add("crazy books2");
-        books.forEach(ele -> System.out.println(ele));
+//        List<String> books = new ArrayList<>();
+//        books.add("crazy books");
+//        books.add("crazy books2");
+//        books.forEach(ele -> System.out.println(ele));
 
 
     }

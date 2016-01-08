@@ -1,4 +1,4 @@
-package com.tester.learn.structure.CH0606;
+package com.tester.learn.structure.CH06.CH0606;
 
 import java.io.*;
 

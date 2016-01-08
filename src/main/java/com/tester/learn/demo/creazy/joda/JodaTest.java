@@ -1,7 +1,4 @@
 package com.tester.learn.demo.creazy.joda;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-
 import java.util.Calendar;
 
 
