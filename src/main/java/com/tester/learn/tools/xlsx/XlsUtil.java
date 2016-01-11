@@ -88,8 +88,7 @@ public class XlsUtil {
         {
             Map.Entry pair = (Map.Entry)it.next();
             JSONObject obj = new JSONObject();
-            obj.put("stock-code",pair.getKey());
-            obj.put("stock-cname",pair.getValue());
+            obj.put(pair.getKey()+".SZ",pair.getValue());
             objArr.add(i,obj);
             i++;
         }
