@@ -6,13 +6,15 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  * Created by U0138272 on 1/9/2016.
@@ -23,6 +25,7 @@ public class XlsUtil {
     private static int SHENZHEN_A_SHEET = 3;
     private static int SHENZHEN_B_SHEET = 4;
     private static int SHENZHEN_SME = 6;
+    private static String XLSX_FILE_NAME = "Shenzhen-Abbreviation.xlsx";
 
 
     public File getFile() throws IOException
@@ -34,7 +37,7 @@ public class XlsUtil {
         try
         {
             ClassLoader classLoader = claz.getClassLoader();
-            file = new File(classLoader.getResource("Shenzhen-Abbreviation.xlsx").getFile());
+            file = new File(classLoader.getResource(XLSX_FILE_NAME).getFile());
             System.out.println(file);
         }catch(Exception e)
         {
@@ -75,15 +78,45 @@ public class XlsUtil {
         return hmResults;
     }
 
-    public String convertMapToJson()
+    public JSONArray convertMapToJson(HashMap<String,String> hmInfo)
     {
         System.out.println("converted to json ");
-        return new String();
+        JSONArray objArr = new JSONArray();
+        Iterator it = hmInfo.entrySet().iterator();
+        int i = 0;
+        while(it.hasNext())
+        {
+            Map.Entry pair = (Map.Entry)it.next();
+            JSONObject obj = new JSONObject();
+            obj.put("stock-code",pair.getKey());
+            obj.put("stock-cname",pair.getValue());
+            objArr.add(i,obj);
+            i++;
+        }
+        System.out.println("objArr" + objArr);
+        return objArr;
     }
 
-    public void writeJsonToFile()
+    public void writeJsonToFile(JSONArray jsonArray)
     {
         System.out.println("write to json");
+        Class<?> claz = getClass();
+        ClassLoader classLoader = claz.getClassLoader();
+        String filePath = classLoader.getResource(XLSX_FILE_NAME).getPath();
+        System.out.println(filePath);
+        try{
+
+            FileWriter fileWriter = new FileWriter(filePath);
+            fileWriter.write(jsonArray.toJSONString());
+            fileWriter.flush();
+            fileWriter.close();
+
+        }catch(Exception e)
+        {
+
+        }
+
+
     }
 
 
@@ -94,10 +127,15 @@ public class XlsUtil {
         try{
           File xlsxFile =  xu.getFile();
           hmStockCodeAndCompany = xu.readXlsx(xlsxFile,SHENZHEN_GEM_SHEET);
+          JSONArray stockJsonArr = xu.convertMapToJson(hmStockCodeAndCompany);
+          xu.writeJsonToFile(stockJsonArr);
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
         }
         System.out.println(hmStockCodeAndCompany);
+
+
+
     }
 }
