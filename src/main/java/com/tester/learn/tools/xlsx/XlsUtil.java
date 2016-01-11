@@ -38,7 +38,7 @@ public class XlsUtil {
         {
             ClassLoader classLoader = claz.getClassLoader();
             file = new File(classLoader.getResource(XLSX_FILE_NAME).getFile());
-            System.out.println(file);
+            System.out.println("file::"+file);
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
@@ -99,18 +99,16 @@ public class XlsUtil {
 
     public void writeJsonToFile(JSONArray jsonArray)
     {
-        System.out.println("write to json");
-        Class<?> claz = getClass();
-        ClassLoader classLoader = claz.getClassLoader();
-        String filePath = classLoader.getResource(XLSX_FILE_NAME).getPath();
-        System.out.println(filePath);
+        String strfilePath =  XlsUtil.class.getResource("").getPath();
+        System.out.println("filePath==:  "+strfilePath);
+        File outPutFile = new File(strfilePath + "output.json");
+        System.out.println(outPutFile.getAbsolutePath());
         try{
 
-            FileWriter fileWriter = new FileWriter(filePath);
+            FileWriter fileWriter = new FileWriter(outPutFile);
             fileWriter.write(jsonArray.toJSONString());
             fileWriter.flush();
             fileWriter.close();
-
         }catch(Exception e)
         {
 
@@ -125,8 +123,8 @@ public class XlsUtil {
         HashMap<String,String> hmStockCodeAndCompany = null;
         XlsUtil xu = new XlsUtil();
         try{
-          File xlsxFile =  xu.getFile();
-          hmStockCodeAndCompany = xu.readXlsx(xlsxFile,SHENZHEN_GEM_SHEET);
+          File isXlsxFile =  xu.getFile();
+          hmStockCodeAndCompany = xu.readXlsx(isXlsxFile,SHENZHEN_GEM_SHEET);
           JSONArray stockJsonArr = xu.convertMapToJson(hmStockCodeAndCompany);
           xu.writeJsonToFile(stockJsonArr);
         }catch(Exception e)
