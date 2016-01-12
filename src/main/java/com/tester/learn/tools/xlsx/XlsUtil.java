@@ -78,25 +78,23 @@ public class XlsUtil {
         return hmResults;
     }
 
-    public JSONArray convertMapToJson(HashMap<String,String> hmInfo)
+    public JSONObject convertMapToJson(HashMap<String,String> hmInfo)
     {
         System.out.println("converted to json ");
-        JSONArray objArr = new JSONArray();
+        JSONObject objAll = new JSONObject();
         Iterator it = hmInfo.entrySet().iterator();
         int i = 0;
         while(it.hasNext())
         {
             Map.Entry pair = (Map.Entry)it.next();
-            JSONObject obj = new JSONObject();
-            obj.put(pair.getKey()+".SZ",pair.getValue());
-            objArr.add(i,obj);
+            objAll.put("\"" + pair.getKey()+".SZ" + "\"",pair.getValue());
             i++;
         }
-        System.out.println("objArr" + objArr);
-        return objArr;
+        System.out.println("objArr" + objAll);
+        return objAll;
     }
 
-    public void writeJsonToFile(JSONArray jsonArray)
+    public void writeJsonToFile(JSONObject jsonObj)
     {
         String strfilePath =  XlsUtil.class.getResource("").getPath();
         System.out.println("filePath==:  "+strfilePath);
@@ -105,17 +103,14 @@ public class XlsUtil {
         try{
 
             FileWriter fileWriter = new FileWriter(outPutFile);
-            fileWriter.write(jsonArray.toJSONString());
+            fileWriter.write(jsonObj.toJSONString());
             fileWriter.flush();
             fileWriter.close();
         }catch(Exception e)
         {
-
+            System.out.println(e.getMessage());
         }
-
-
     }
-
 
     public static void main(String[] args)
     {
@@ -124,15 +119,13 @@ public class XlsUtil {
         try{
           File isXlsxFile =  xu.getFile();
           hmStockCodeAndCompany = xu.readXlsx(isXlsxFile,SHENZHEN_GEM_SHEET);
-          JSONArray stockJsonArr = xu.convertMapToJson(hmStockCodeAndCompany);
-          xu.writeJsonToFile(stockJsonArr);
+          JSONObject stockJsonObj = xu.convertMapToJson(hmStockCodeAndCompany);
+          xu.writeJsonToFile(stockJsonObj);
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
         }
         System.out.println(hmStockCodeAndCompany);
-
-
 
     }
 }
