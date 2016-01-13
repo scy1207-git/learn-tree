@@ -24,7 +24,7 @@ public class XlsUtil {
     private static int SHENZHEN_GEM_SHEET = 2;
     private static int SHENZHEN_A_SHEET = 3;
     private static int SHENZHEN_B_SHEET = 4;
-    private static int SHENZHEN_SME = 6;
+    private static int SHENZHEN_SME = 5;
     private static String XLSX_FILE_NAME = "Shenzhen-Abbreviation.xlsx";
 
 
@@ -115,11 +115,23 @@ public class XlsUtil {
     public static void main(String[] args)
     {
         HashMap<String,String> hmStockCodeAndCompany = null;
+        HashMap<String,String> hmStockCodeAndCompany2 = null;
+        HashMap<String,String> hmStockCodeAndCompany3 = null;
+        HashMap<String,String> hmStockCodeAndCompany4 = null;
+        HashMap<String,String> hmStockCodeAndCompanyShenZhenAll = null;
         XlsUtil xu = new XlsUtil();
         try{
           File isXlsxFile =  xu.getFile();
           hmStockCodeAndCompany = xu.readXlsx(isXlsxFile,SHENZHEN_GEM_SHEET);
-          JSONObject stockJsonObj = xu.convertMapToJson(hmStockCodeAndCompany);
+          hmStockCodeAndCompany2 = xu.readXlsx(isXlsxFile,SHENZHEN_A_SHEET);
+          hmStockCodeAndCompany3 = xu.readXlsx(isXlsxFile,SHENZHEN_B_SHEET);
+          hmStockCodeAndCompany4 = xu.readXlsx(isXlsxFile,SHENZHEN_SME);
+          hmStockCodeAndCompanyShenZhenAll.putAll(hmStockCodeAndCompany);
+          hmStockCodeAndCompanyShenZhenAll.putAll(hmStockCodeAndCompany2);
+          hmStockCodeAndCompanyShenZhenAll.putAll(hmStockCodeAndCompany3);
+          hmStockCodeAndCompanyShenZhenAll.putAll(hmStockCodeAndCompany4);
+          System.out.println(hmStockCodeAndCompanyShenZhenAll.size());
+          JSONObject stockJsonObj = xu.convertMapToJson(hmStockCodeAndCompanyShenZhenAll);
           xu.writeJsonToFile(stockJsonObj);
         }catch(Exception e)
         {

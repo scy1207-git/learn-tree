@@ -1,9 +1,8 @@
 package com.tester.learn.tools.readTxt;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import org.json.simple.JSONObject;
+
+import java.io.*;
 
 /**
  * Created by leosong on 16-1-12.
@@ -16,32 +15,46 @@ public class Test {
         Class<?> claz = getClass();
         ClassLoader classLoader = claz.getClassLoader();
         file = new File(classLoader.getResource("ShangHai.txt").getFile());
-        System.out.println("File:: " + file);
         return file;
     }
 
     public static void main(String[] args)
     {
-        System.out.println("OK");
         Test test = new Test();
         File shangHaiFile = null;
+        JSONObject objAll = new JSONObject();
         try{
             shangHaiFile = test.getFile();
             BufferedReader br = new BufferedReader(new FileReader(shangHaiFile));
-            System.out.println(br);
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
             int counter =0;
             while(line != null)
             {
-
                 String[] data = line.toString().split(" ");
-                System.out.println(data[0]);
-                System.out.println(data[1]);
+                if(data[0] != null && data[1] !=null)
+                {
+                    objAll.put("\"" + data[0] + ".SS" + "\"", data[1]);
+                }
+
                 line = br.readLine();
                 counter++;
             }
-            System.out.println(counter);
+
+            String strFilePath = Test.class.getResource("").getPath();
+            File outPutFile = new File(strFilePath + "outputSS.json");
+            try
+            {
+                FileWriter fileWriter = new FileWriter(outPutFile);
+                fileWriter.write(objAll.toJSONString());
+                fileWriter.flush();
+                fileWriter.close();
+            } catch(Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
+
+
 
         }catch(Exception e)
         {
