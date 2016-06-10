@@ -44,6 +44,11 @@
             <artifactId>htmlunit</artifactId>
             <version>2.13</version>
         </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.2</version>
+        </dependency>
 
     </dependencies>
 
