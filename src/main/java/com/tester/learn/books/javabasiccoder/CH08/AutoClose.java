@@ -1,4 +1,4 @@
-package com.tester.learn.books.javacoder.CH08;
+package com.tester.learn.books.javabasiccoder.CH08;
 
 import java.io.*;
 

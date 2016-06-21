@@ -1,4 +1,4 @@
-package com.tester.learn.books.javacoder.CH02.CH0204;
+package com.tester.learn.books.javabasiccoder.CH02.CH0204;
 
 /**
  * Created by leosong on 16-1-14.
