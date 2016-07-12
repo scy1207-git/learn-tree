@@ -83,6 +83,23 @@ public class SequenceQueue<T> {
         rear = 0;
     }
 
+    public String toString()
+    {
+        if(empty())
+        {return "[]";}
+        else
+        {
+            StringBuilder sb = new StringBuilder("[");
+            for(int i = front;i< rear; i++)
+            {
+                sb.append(elementData[i].toString()+ ", ");
+
+            }
+            int len = sb.length();
+            return sb.delete(len -2,len).append("]").toString();
+        }
+    }
+
 
 
 }
