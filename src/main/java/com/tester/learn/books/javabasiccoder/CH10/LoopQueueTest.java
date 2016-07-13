@@ -1,7 +1,7 @@
 package com.tester.learn.books.javabasiccoder.CH10;
 
 /**
- * Created by dingshan on 16/7/12.
+ * Created by leosong on 16/7/12.
  */
 public class LoopQueueTest {
 
