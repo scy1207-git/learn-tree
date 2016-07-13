@@ -1,4 +1,4 @@
-package com.tester.learn.books.javabasiccoder.CH11;
+package com.tester.learn.books.javabasiccoder.CH11.CH01;
 
 /**
  * Created by dingshan on 16/7/13.

@@ -1,4 +1,6 @@
-package com.tester.learn.books.javabasiccoder.CH11;
+package com.tester.learn.books.javabasiccoder.CH11.CH01;
+
+import com.tester.learn.books.javabasiccoder.CH11.CH01.TreeParent;
 
 import java.util.List;
 
