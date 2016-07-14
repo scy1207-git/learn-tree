@@ -7,3 +7,6 @@ target/
 /docs/TODOs/javastructure/
 /docs/
 /.idea/workspace.xml
+workspace.xml
+tasks.xml
+*.iws
