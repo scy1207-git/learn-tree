@@ -6,7 +6,7 @@ import com.tester.learn.books.algorithms.utils.StdOut;
 import java.util.Comparator;
 
 /**
- * Created by dingshan on 16/7/11.
+ * Created by leosong on 16/7/11.
  */
 public class Selection {
 
@@ -62,8 +62,6 @@ public class Selection {
         sort(a);
         assert isSorted(a);
         show(a);
-
-
     }
 
 
