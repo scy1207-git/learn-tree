@@ -13,35 +13,29 @@ public class CH08_01 {
         System.out.println("冒泡排序法：");
 
 
-        System.out.print("原始数据为：");
-        for(i=0;i<6;i++)
+        System.out.print("原始数据为：\t\n");
+        for( i = data.length -1;i>0;i--)
         {
-            System.out.print(data[i]+" ");
-        }
-        System.out.print("\n");
-
-        for (i=5;i>0;i--)		//扫描次数
-        {
-            for (j=0;j<i;j++)   	//比较、交换次数
+            for(j=0;j<i;j++)
             {
-                if (data[j]>data[j+1])
+                if(data[j] > data[j+1])
                 {
-                    tmp=data[j];
-                    data[j]=data[j+1];
-                    data[j+1]=tmp;
-                }
-            }
-            //把各次扫描后的结果打印�X
-            System.out.print("第"+(6-i)+"次排序后的结果是：");
-            for (j=0;j<6;j++)
-            {
-                System.out.print(data[j]+" ");
-            }
-            System.out.print("\n");
+                    tmp = data[j];
+                    data[j] = data[j+1];
+                    data[j+1] = tmp;
+                 }
 
+            }
         }
+        System.out.println("\n");
 
-        System.out.print("排序后结果为：");
+
+
+
+
+
+
+        System.out.println("排序后结果为：");
         for (i=0;i<6;i++)
         {
             System.out.print(data[i]+" ");
