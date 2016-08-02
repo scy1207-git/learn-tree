@@ -10,7 +10,17 @@ public class Women implements IWomen {
     public Women(int _type, String _request)
     {
         this.type = _type;
-        this.request = _request;
+        switch(this.type)
+        {
+            case 1:
+                this.request = "daughter's request: " + _request;
+                break;
+            case 2:
+                this.request = "wife's request: " + _request;
+                break;
+            case 3:
+                this.request = "mother's request" + _request;
+        }
 
     }
 

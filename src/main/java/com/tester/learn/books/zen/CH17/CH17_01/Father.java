@@ -7,7 +7,7 @@ public class Father {
 
     public static void main(String[] args)
     {
-        SchoolReport sr = new FouthGradeSchoolReport();
+        SchoolReport sr = new SugarFouthGradeSchoolReport();
         sr.report();
     }
 

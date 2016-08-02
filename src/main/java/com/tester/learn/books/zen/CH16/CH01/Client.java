@@ -16,9 +16,16 @@ public class Client {
         {
             arrayList.add(new Women(rand.nextInt(),"I am going out!"));
         }
-        IHandler father =new Father();
-        IHandler husband = new Husband();
-        IHandler son = new Son();
+        Handler father =new Father();
+        Handler husband = new Husband();
+        Handler son = new Son();
+
+        father.setNext(husband);
+        husband.setNext(son);
+        for(IWomen women:arrayList)
+        {
+            father.HandleMessage(women);
+        }
 
 
     }
